@@ -9,6 +9,6 @@ public class HelloController {
     @GetMapping("/Hello")
     @ResponseBody
     public String hello() {
-        return "Hello World";
+        return "Hello Live server! Spring Boot Devtools Test1 Test2 Test3 Test4 Test5 Test6 Test7";
     }
 }
