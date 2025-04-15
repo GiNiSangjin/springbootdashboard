@@ -1,5 +1,6 @@
 package com.mystyle.sbb;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Optional;
@@ -15,11 +16,12 @@ class SpringDashboardApplicationTests {
 
     @Test
     void testJpa() {
+        assertEquals(2, questionRepository.count());
         Optional<Question> oq = questionRepository.findById(1);
         assertTrue(oq.isPresent());
         Question q = oq.get();
-        q.setSubject("수정된 제목");
-        this.questionRepository.save(q);
+        this.questionRepository.delete(q);
+        assertEquals(1, questionRepository.count());
     }
 
 }
