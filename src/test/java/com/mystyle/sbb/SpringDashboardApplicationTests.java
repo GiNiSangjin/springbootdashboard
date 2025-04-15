@@ -1,13 +1,25 @@
 package com.mystyle.sbb;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Optional;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class SpringDashboardApplicationTests {
 
+    @Autowired
+    private QuestionRepository questionRepository;
+
     @Test
-    void contextLoads() {
+    void testJpa() {
+        Optional<Question> oq = questionRepository.findById(1);
+        assertTrue(oq.isPresent());
+        Question q = oq.get();
+        q.setSubject("수정된 제목");
+        this.questionRepository.save(q);
     }
 
 }
