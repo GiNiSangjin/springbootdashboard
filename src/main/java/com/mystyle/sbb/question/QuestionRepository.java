@@ -1,4 +1,4 @@
-package com.mystyle.sbb;
+package com.mystyle.sbb.question;
 
 import java.util.List;
 
