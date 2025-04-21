@@ -5,9 +5,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +22,9 @@ public class QuestionService {
     }
 
     public Page<Question> getList(int page) {
-        Pageable pageable = PageRequest.of(page,20);
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("createTime"));
+        Pageable pageable = PageRequest.of(page,20,Sort.by(sorts));
         return this.questionRepository.findAll(pageable);
     }
     public Question getQuestion(Integer id) {
