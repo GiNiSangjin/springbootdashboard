@@ -14,7 +14,7 @@
             <td>
                 <a th:href="@{|/question/detail/${question.id}|}"
                    th:text="${question.subject}"></a>
-                <span class="text-danger small ms-2"
+                <span class="my-yellow small ms-2"
                       th:if="${#lists.size(question.answers) > 0}"
                         th:text="${#lists.size(question.answers)}">
                 </span>

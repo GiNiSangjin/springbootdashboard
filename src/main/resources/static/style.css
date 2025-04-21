@@ -5,3 +5,11 @@ textarea {
 input[type=submit] {
     margin-top: 10px;
 }
+
+.my-blue {
+    color: #0055ff;
+}
+
+.my-yellow {
+    color: #ffcc00;
+}
