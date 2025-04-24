@@ -1,6 +1,5 @@
 package com.mystyle.sbb.user;
 
-import com.mystyle.sbb.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -9,9 +8,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
-
 
 @RequiredArgsConstructor
 @Controller
@@ -49,9 +47,21 @@ public class UserController {
         return "redirect:/";
     }
 
+//    기존코드
     @GetMapping("/login")
     public String login() {
         return "login_form";
     }
+//    @GetMapping("/login")
+//    public String login(@RequestParam(value="error", required=false) String error,
+//                        @RequestParam(value="message",required=false)String message,
+//                        Model model) {
+//        if(error != null) {/            model.addAttribute("loginError", true);
+//        }
+//        if(message!=null) {
+//            model.addAttribute("loginMessage", message);
+//        }
+//        return "login_form";
+//    }
 
 }
