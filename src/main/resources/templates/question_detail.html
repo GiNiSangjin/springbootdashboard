@@ -20,6 +20,20 @@
                    sec:authorize="isAuthenticated()"
                    th:if="${question.author != null and #authentication.getPrincipal().getUsername() == question.author.username}"
                     th:text="수정"></a>
+                <a href="javascript:void(0);"
+                   th:data-uri="@{|/question/delete/${question.id}|}"
+                   class="delete btn btn-sm btn-outline-secondary"
+                   sec:authorize="isAuthenticated()"
+                   th:if="${question.author != null and #authentication.getPrincipal().getUsername() == question.author.username}"
+                   th:text="삭제"></a>
+<!--                <form th:action="@{|/question/delete/${question.id}|}" method="post"-->
+<!--                      th:if="${question.author != null and #authentication.getPrincipal().getUsername() == question.author.username}"-->
+<!--                      sec:authorize="isAuthenticated()"-->
+<!--                      onsubmit="return confirm('정말 삭제하시겠습니까?');">-->
+<!--                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
+<!--                    <button type="submit" class="btn btn-sm btn-outline-secondary">삭제</button>-->
+<!--                </form>-->
+
             </div>
         </div>
     </div>
@@ -52,6 +66,16 @@
         <input type="submit" value="답변 등록" class="btn btn-primary my-2">
     </form>
 </div>
+<script layout:fragment="script" type='text/javascript'>
+    const delete_elements = document.getElementsByClassName("delete");
+    Array.from(delete_elements).forEach(function (element) {
+        element.addEventListener('click', function() {
+            if(confirm("정말로 삭제하시겠습니까?")) {
+                location.href = this.dataset.uri;
+            };
+        });
+    });
+</script>
 </html>
 
 
