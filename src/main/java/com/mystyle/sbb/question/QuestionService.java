@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import com.mystyle.sbb.user.SiteUser;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -36,11 +37,19 @@ public class QuestionService {
         }
     }
 
-    public void create(String subject, String content) {
+    public void create(String subject, String content, SiteUser user) {
         Question q = new Question();
         q.setSubject(subject);
         q.setContent(content);
         q.setCreateTime(LocalDateTime.now());
+        q.setAuthor(user);
         this.questionRepository.save(q);
+    }
+
+    public void modify(Question question, String subject, String content) {
+        question.setSubject(subject);
+        question.setContent(content);
+        question.setModifyTime(LocalDateTime.now());
+        this.questionRepository.save(question);
     }
 }

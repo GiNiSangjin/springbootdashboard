@@ -17,4 +17,18 @@
         <button type="submit" class="btn btn-primary">로그인</button>
     </form>
 </div>
+<!--토스트 컨테이너-->
+<div aria-live="polite" aria-atomic="true" class="position-relative">
+    <div class="toast-container position-absolute top-0 end-0 p-3">
+        <div class="toast align-items-center text-bg-warning border-0" role="alert"
+             aria-live="assertive" aria-atomic="true"
+             th:if="${loginMessage}">
+            <div class="d-flex">
+                <div class="toast-body" th:text="${loginMessage}"></div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                        data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+</div>
 </html>
