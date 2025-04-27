@@ -7,6 +7,10 @@
             <div class="card-text" style="white-space: pre-line;"
                  th:text="${question.content}"></div>
             <div class="d-flex justify-content-end">
+                <div th:if="${question.modifyTime != null}" class="badge bg-light text-dark p-2 text-start mx-3">
+                     <div class="mb-2">modified at</div>
+                <div th:text="${#temporals.format(question.modifyTime, 'yyyy-MM-dd HH:mm')}"></div>
+                </div>
                 <div class="badge bg-light text-dark p-2 text-start">
                     <div class="mb-2">
                         <span th:if="${question.author != null}"
@@ -39,6 +43,10 @@
             <div class="card-text" style="white-space:pre-line;"
                  th:text="${answer.content}"></div>
             <div class="d-flex justify-content-end">
+                <div th:if="${answer.modifyTime != null}" class="badge bg-light text-dark p-2 text-start mx-3">
+                     <div class="mb-2">modified at</div>
+                <div th:text="${#temporals.format(answer.modifyTime, 'yyyy-MM-dd HH:mm')}"></div>
+                </div>
                 <div class="badge bg-light text-dark p-2 text-start">
                     <div class="mb-2">
                         <span th:if="${answer.author != null}"
@@ -81,6 +89,13 @@
         });
     });
 </script>
+<script>
+    function showReplyForm(answerId) {
+        const form = document.getElementById("reply-form-" + answerId);
+        form.style.display = (form.style.display === "none") ? "block" : "none";
+    }
+</script>
+
 </html>
 
 

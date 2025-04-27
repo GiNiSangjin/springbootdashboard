@@ -3,6 +3,7 @@ package com.mystyle.sbb.answer;
 import java.time.LocalDateTime;
 
 import com.mystyle.sbb.question.Question;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.stereotype.Service;
 import com.mystyle.sbb.user.SiteUser;
 import lombok.RequiredArgsConstructor;
@@ -41,4 +42,5 @@ public class AnswerService {
     public void delete(Answer answer) {
         this.answerRepository.delete(answer);
     }
+
 }
