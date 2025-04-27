@@ -1,10 +1,12 @@
 package com.mystyle.sbb.answer;
+import java.util.Set;
 
 import java.time.LocalDateTime;
 
 import com.mystyle.sbb.user.SiteUser;
 import com.mystyle.sbb.question.Question;
 import jakarta.persistence.*;
+import jakarta.persistence.ManyToMany;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -30,4 +32,6 @@ public class Answer {
 
     private LocalDateTime modifyTime;
 
+    @ManyToMany
+    Set<SiteUser> voter;
 }
