@@ -29,13 +29,13 @@ public class QuestionService {
     private final QuestionRepository questionRepository;
 
     private Specification<Question> search(String kw) {
-        return new Specification<> {
+        return new Specification<> (){
             private static final long serialVersionUID = 1L;
             @Override
             public Predicate toPredicate(Root<Question> q, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 query.distinct(true); // 중복 제거
                 Join<Question, SiteUser> u1 = q.join("author", JoinType.LEFT);
-                Join<Question, Answer> a = q.join("answerList", JoinType.LEFT);
+                Join<Question, Answer> a = q.join("answers", JoinType.LEFT);
                 Join<Answer, SiteUser> u2 = a.join("author", JoinType.LEFT);
                 return cb.or(cb.like(q.get("subject"), "%" + kw + "%"), //제목
                         cb.like(q.get("content"), "%" + kw + "%"), //내용
@@ -54,7 +54,7 @@ public class QuestionService {
         List<Sort.Order> sorts = new ArrayList<>();
         sorts.add(Sort.Order.desc("createTime"));
         Pageable pageable = PageRequest.of(page,20,Sort.by(sorts));
-        Specification<Question> spec = this.search(kw);
+        Specification<Question> spec = search(kw);
         return this.questionRepository.findAll(spec, pageable);
     }
     public Question getQuestion(Integer id) {
